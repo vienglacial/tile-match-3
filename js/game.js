@@ -272,81 +272,81 @@ const TUTORIAL = { name: "Khởi Động 🌱", map: [
   ".22.",
 ]};
 
-// từ màn 2 — "vành đai kép + 3 trụ mù + lõi 2x2": sau vành đai dễ,
-// frontier chỉ còn ~11 đỉnh mù với 18 loại — gần như toàn ô lẻ,
-// phải ghi nhớ vị trí từng ô đã lộ; đào mò là tràn khay.
+// từ màn 2 — LÕI THEO ĐẶC TẢ: 3 lõi 3-ô + 1 lõi 4-ô đan so le kiểu xây gạch
+// (1 ô đè khe 2 ô, đảo chiều mỗi tầng) + 2 trụ đơn úp kín không thấy đáy.
+// Support (viền + lớp phủ + xấp bài) sẽ cân chỉnh sau khi test lõi.
 const PATTERNS = [
   { name: "Nhật Thực 🌘", map: [
-    "222222222222",
-    "222222222222",
-    "2.e......e.2",
-    "2..........2",
-    "2....ee....2",
-    "2....ee....2",
-    "2....77....2",
-    "2....e.....2",
-    "2....77....2",
-    "222222222222",
+    "..11111111..",
+    "............",
+    "...999......",
+    "......999...",
+    "...999......",
+    "....bbbb....",
+    "..e......e..",
+    "............",
+    "............",
+    "..11111111..",
   ]},
   { name: "Trái Tim 💗", map: [
-    "222222222222",
-    "222222222222",
-    "2..e....e..2",
-    "2..........2",
-    "2....ee....2",
-    "2....ee....2",
-    "2.77....77.2",
-    "2.....e....2",
-    "2..........2",
-    "222222222222",
+    "..11111111..",
+    "............",
+    "...999..e...",
+    "......999...",
+    "....bbbb....",
+    "...999......",
+    "........e...",
+    "............",
+    "............",
+    "..11111111..",
   ]},
   { name: "Pháo Đài 🏰", map: [
-    "222222222222",
-    "222222222222",
-    "2.e........2",
-    "2.........e2",
-    "2....ee....2",
-    "2....ee....2",
-    "2....77....2",
-    "2.e...77...2",
-    "2..........2",
-    "222222222222",
+    "..11111111..",
+    "............",
+    "..e......e..",
+    "...999.999..",
+    "....bbbb....",
+    ".....999....",
+    "............",
+    "............",
+    "............",
+    "..11111111..",
   ]},
   { name: "Bươm Bướm 🦋", map: [
-    "222222222222",
-    "222222222222",
-    "2.e..77..e.2",
-    "2..........2",
-    "2....ee....2",
-    "2....ee....2",
-    "2..........2",
-    "2....e.77..2",
-    "2..........2",
-    "222222222222",
+    "..11111111..",
+    "............",
+    "...999......",
+    "..e.bbbb.e..",
+    "......999...",
+    "...999......",
+    "............",
+    "............",
+    "............",
+    "..11111111..",
   ]},
   { name: "Chiếc Nhẫn 💍", map: [
-    "222222222222",
-    "222222222222",
-    "2...e..e...2",
-    "2..........2",
-    "2....ee....2",
-    "2....ee....2",
-    "2....77....2",
-    "2....e..77.2",
-    "2..........2",
-    "222222222222",
+    "..11111111..",
+    "............",
+    "....999.....",
+    "..999..999..",
+    "....bbbb....",
+    "...e....e...",
+    "............",
+    "............",
+    "............",
+    "..11111111..",
   ]},
   { name: "La Bàn 🧭", map: [
-    "222222222222",
-    "222222222222",
-    "2....ee....2",
-    "2..........2",
-    "2....ee....2",
-    "2....ee....2",
-    "2....77....2",
-    "2.77..e....2",
-    "2..........2",
-    "222222222222",
+    "..11111111..",
+    "............",
+    "....999.....",
+    "..e.bbbb.e..",
+    "....999.....",
+    "....999.....",
+    "............",
+    "............",
+    "............",
+    "..11111111..",
   ]},
 ];
 
@@ -361,7 +361,7 @@ function levelConfig(level) {
   // từ màn 2: siêu khó ngay (khó 1 -> khó 90) — đủ 12 loại ô, bố cục đa cụm
   // đã cao sẵn trong bản đồ, bộ 3 RẢI XA khắp các cụm; màn sau chỉ nhích nhẹ
   return {
-    types: TYPES.length, // đủ 16 loại ô từ màn 2
+    types: 12, // 12/20 loại — cân với tổng ~165 ô (mỗi loại ~4.5 bộ)
     tier:  Math.min(3 + Math.floor((level - 2) / 4), 5),
     spread: true,
   };
@@ -410,32 +410,30 @@ function generateLevel(level) {
   }
   const hAt = (x, y) => (x >= 0 && y >= 0 && x < gridW && y < gridH) ? hMap[y][x] : 0;
 
-  // ô thuộc LÕI SÂU (h>=10) chồng THẲNG úp kín — không xếp lệch, không lộ icon dưới:
-  // cuối màn là vùng ẩn số tuyệt đối, máy giỏi mấy cũng phải đào mò
-  const deep = (x, y) => hAt(x, y) >= 10;
-  const blockOK = (x, y, z) => // đủ khối 2x2 cao hơn z (và không phải lõi úp) để đặt ô lệch nửa
-    hAt(x, y) > z && hAt(x + 1, y) > z && hAt(x, y + 1) > z && hAt(x + 1, y + 1) > z &&
-    !deep(x, y) && !deep(x + 1, y) && !deep(x, y + 1) && !deep(x + 1, y + 1);
-
-  // xếp tầng THEO TỪNG Ô (không gom vùng): giếng/trụ hẹp dù nằm sát mặt ruộng
-  // vẫn giữ trọn chiều sâu của mình
+  // LÕI ĐAN SO LE KIỂU XÂY GẠCH: tầng chẵn nằm đúng lưới; tầng lẻ BẮT CẶP NGANG
+  // — 1 ô đè lên khe của 2 ô dưới, hướng bắt cặp đảo chiều mỗi tầng lẻ
+  // → cài răng lược "2 đè 1, 1 đè 2". Ô đơn không có bạn cặp thì chồng thẳng
+  // (trụ úp kín — vùng mù của màn).
   let positions = [];
   for (let y = 0; y < gridH; y++) for (let x = 0; x < gridW; x++)
     if (hAt(x, y) > 0) positions.push({ x, y, z: 0 });
 
   for (let z = 1; z < maxH; z++) {
     if (z % 2 === 1) {
-      // tầng lẻ: chỗ đủ khối 2x2 thì lệch nửa ô (lộ ô dưới);
-      // ô hẹp không thuộc khối nào thì chồng thẳng (giếng úp kín)
-      const inBlock = new Set();
-      for (let y = 0; y < gridH - 1; y++) for (let x = 0; x < gridW - 1; x++)
-        if (blockOK(x, y, z)) {
-          positions.push({ x: x + 0.5, y: y + 0.5, z });
-          inBlock.add(x + "," + y).add((x + 1) + "," + y)
-                 .add(x + "," + (y + 1)).add((x + 1) + "," + (y + 1));
+      const start = Math.floor(z / 2) % 2; // đảo chiều bắt cặp mỗi tầng lẻ
+      const used = new Set();
+      for (let y = 0; y < gridH; y++) {
+        for (let x = start; x < gridW - 1; x++) {
+          if (hAt(x, y) > z && hAt(x + 1, y) > z &&
+              !used.has(x + "," + y) && !used.has((x + 1) + "," + y)) {
+            positions.push({ x: x + 0.5, y, z });
+            used.add(x + "," + y).add((x + 1) + "," + y);
+            x++;
+          }
         }
+      }
       for (let y = 0; y < gridH; y++) for (let x = 0; x < gridW; x++)
-        if (hAt(x, y) > z && !inBlock.has(x + "," + y)) positions.push({ x, y, z });
+        if (hAt(x, y) > z && !used.has(x + "," + y)) positions.push({ x, y, z });
     } else {
       // tầng chẵn: nằm đúng lưới trên mọi ô còn cao hơn z
       for (let y = 0; y < gridH; y++) for (let x = 0; x < gridW; x++)
@@ -443,10 +441,28 @@ function generateLevel(level) {
     }
   }
 
+  // LỚP PHỦ "TƯỞNG BỞ": 1-2 lớp mỏng so le phủ lên vùng lõi lúc mở màn —
+  // nhìn tưởng dễ ăn, bóc ra mới lộ tháp chùa đan cài và trụ mù bên dưới
+  if (level >= 2) {
+    let bx0 = 99, bx1 = -1, by0 = 99, by1 = -1;
+    for (let y = 0; y < gridH; y++) for (let x = 0; x < gridW; x++)
+      if (hMap[y][x] >= 6 && hMap[y][x] <= 14) {
+        bx0 = Math.min(bx0, x); bx1 = Math.max(bx1, x);
+        by0 = Math.min(by0, y); by1 = Math.max(by1, y);
+      }
+    if (bx1 >= 0) {
+      bx0 = Math.max(0, bx0 - 1); bx1 = Math.min(gridW - 1, bx1 + 1);
+      by0 = Math.max(0, by0 - 1); by1 = Math.min(gridH - 1, by1 + 1);
+      for (let y = by0; y <= by1; y++) for (let x = bx0; x <= bx1; x++)
+        positions.push({ x, y, z: maxH });
+      for (let y = by0; y < by1; y++) for (let x = bx0; x < bx1; x++)
+        positions.push({ x: x + 0.5, y: y + 0.5, z: maxH + 1 });
+    }
+  }
   // từ màn 2: thêm 2 "XẤP BÀI" nằm ngang dưới bàn cờ (như Doggo) —
   // cả xấp chồng lệch ngang, chỉ thấy và bốc được lá ngoài cùng
   if (level >= 2) {
-    const len = 12 + cfg.tier;
+    const len = 6 + cfg.tier;
     for (let k = 0; k < len; k++) {
       positions.push({ x: 0.3 + k * 0.4, y: gridH + 0.3, z: k, flat: true });
       positions.push({ x: gridW - 1.3 - k * 0.4, y: gridH + 0.3, z: k, flat: true });
@@ -488,7 +504,7 @@ function generateLevel(level) {
     // 40% đầu: bộ trộn tự do (đầu màn dễ). 60% sau: các bộ xếp VÒNG TRÒN đủ
     // 18 loại — hai bộ cùng loại cách nhau ~54 ô, vùng mù không bao giờ có
     // "bản thứ 3 nằm gần", phải nhớ và ôm ô lẻ rất lâu mới ghép được
-    const easyCount = Math.ceil(triples * 0.4);
+    const easyCount = Math.ceil(triples * 0.55);
     const head = typePool.slice(0, easyCount);
     const rest = typePool.length - easyCount;
     const rr = [];
@@ -742,8 +758,8 @@ function moveToTray(t) {
 function gainCharge(type) {
   // ghép đủ 3 bộ mới được 1 vạch năng lượng; bộ ô năng lượng ⚡ tính gấp đôi
   chargeProg += type === manaType ? 2 : 1;
-  while (chargeProg >= 3) {
-    chargeProg -= 3;
+  while (chargeProg >= 2) {
+    chargeProg -= 2;
     charges = Math.min(charges + 1, hero().cost);
   }
   updateSkillUI();
