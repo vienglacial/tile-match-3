@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#f5e6cf">
+<title>Tile Match 3 - Game Xếp Hình</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== MÀN HÌNH CHÍNH ===== -->
+<div id="screen-home" class="screen active">
+  <div class="home-card">
+    <h1 class="game-title">🧩 Tile Match 3</h1>
+    <p class="game-subtitle">Ghép 3 ô giống nhau để xóa chúng!</p>
+
+    <div class="player-section">
+      <label for="player-name">Tên người chơi</label>
+      <input id="player-name" type="text" maxlength="16" placeholder="Nhập tên của bạn..." autocomplete="off">
+      <div id="player-list" class="player-list"></div>
+    </div>
+
+    <div class="hero-section">
+      <label>Chọn tướng của bạn</label>
+      <div class="hero-list" id="hero-list"></div>
+      <div id="hero-desc" class="hero-desc"></div>
+    </div>
+
+    <button id="btn-play" class="btn btn-primary">▶ Chơi ngay</button>
+    <button id="btn-leaderboard" class="btn btn-secondary">🏆 Bảng xếp hạng</button>
+
+    <div class="how-to">
+      <b>Cách chơi:</b> Chạm vào ô không bị che để đưa xuống khay.
+      3 ô giống nhau sẽ tự biến mất. Khay đầy 7 ô là thua!
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÀN HÌNH CHƠI ===== -->
+<div id="screen-game" class="screen">
+  <div class="game-header">
+    <button id="btn-home" class="icon-btn">🏠</button>
+    <div class="level-badge">Màn <span id="hud-level">1</span></div>
+    <div class="mana-badge" title="Ghép loại ô này được +2 năng lượng">⚡ <span id="hud-mana">?</span></div>
+    <div class="score-badge">⭐ <span id="hud-score">0</span></div>
+  </div>
+
+  <div id="toast"></div>
+
+  <div id="board-wrap">
+    <div id="board"></div>
+  </div>
+
+  <div id="tray-wrap">
+    <div id="tray"></div>
+  </div>
+
+  <!-- ===== CHẾ ĐỘ NHÀ PHÁT TRIỂN (mở bằng ?dev=1) ===== -->
+  <div id="dev-panel">
+    <div class="dev-title">🛠 DEV</div>
+    <button id="dev-win">✅ Qua màn</button>
+    <button id="dev-prev">⏪ Màn -1</button>
+    <button id="dev-next">⏩ Màn +1</button>
+    <button id="dev-tray">♾ Khay: <span id="dev-tray-state">OFF</span></button>
+    <button id="dev-mana">⚡ Nạp đầy</button>
+    <button id="dev-boost">🎁 +5 booster</button>
+  </div>
+
+  <div class="boosters">
+    <button id="btn-skill" class="booster-btn skill-btn">
+      <span id="skill-icon">🥷</span>
+      <span class="booster-count skill-charge" id="cnt-skill">0/4</span>
+      <small id="skill-name">Kỹ năng</small>
+      <div class="charge-bar"><div id="charge-fill" class="charge-fill"></div></div>
+    </button>
+    <button id="btn-undo" class="booster-btn">↩️<span class="booster-count" id="cnt-undo">0</span><small>Hoàn tác</small></button>
+    <button id="btn-shuffle" class="booster-btn">🔀<span class="booster-count" id="cnt-shuffle">0</span><small>Xáo trộn</small></button>
+    <button id="btn-popout" class="booster-btn">📤<span class="booster-count" id="cnt-popout">0</span><small>Lấy ra 3</small></button>
+  </div>
+</div>
+
+<!-- ===== POPUP THẮNG ===== -->
+<div id="modal-win" class="modal">
+  <div class="modal-card">
+    <div class="modal-emoji">🎉</div>
+    <h2>Qua màn!</h2>
+    <p id="win-info"></p>
+    <button id="btn-next" class="btn btn-primary">Màn tiếp theo ➜</button>
+  </div>
+</div>
+
+<!-- ===== POPUP THUA ===== -->
+<div id="modal-lose" class="modal">
+  <div class="modal-card">
+    <div class="modal-emoji">😢</div>
+    <h2>Khay đã đầy!</h2>
+    <p id="lose-info"></p>
+    <button id="btn-retry" class="btn btn-primary">🔄 Chơi lại màn này</button>
+    <button id="btn-lose-home" class="btn btn-secondary">🏠 Về trang chính</button>
+  </div>
+</div>
+
+<!-- ===== POPUP BẢNG XẾP HẠNG ===== -->
+<div id="modal-rank" class="modal">
+  <div class="modal-card modal-rank-card">
+    <h2>🏆 Bảng xếp hạng</h2>
+    <div id="rank-list" class="rank-list"></div>
+    <button id="btn-rank-close" class="btn btn-secondary">Đóng</button>
+  </div>
+</div>
+
+<script src="js/game.js"></script>
+</body>
+</html>
