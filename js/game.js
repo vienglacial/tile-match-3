@@ -401,6 +401,9 @@ function generateLevel(level) {
       let h = ch === "." ? 0 : parseInt(ch, 36);
       // chỉ khối HẸP-SÂU (h>=4) mới dày thêm theo màn; phiến rộng luôn mỏng
       if (h >= 4) h = Math.min(h + cfg.tier, 16);
+      // màn càng cao support càng mỏng/thưa dần (~2%/màn, tối đa -24%)
+      // -> tỉ trọng lõi sâu tăng từ từ, màn 2 giữ nguyên độ khó hiện tại
+      else if (h > 0 && Math.random() < Math.min(Math.max(level - 2, 0) * 0.02, 0.24)) h--;
       hMap[y].push(h);
       maxH = Math.max(maxH, h);
     }
