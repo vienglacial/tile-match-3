@@ -478,7 +478,8 @@ function generateLevel(level) {
   // nên MỌI màn đều giải được bằng logic — thua là do tính sai, không phải do đen.
   const remaining = new Set(positions.map((_, i) => i));
   const pEffY = (p) => p.y - (p.flat ? 0 : p.z * LIFT_Y); // cùng luật che với lúc chơi
-  const overlap = (a, b) => Math.abs(a.x - b.x) < 1 && Math.abs(pEffY(a) - pEffY(b)) < 1;
+  const overlap = (a, b) =>
+    Math.abs(a.x - b.x) < COVER && Math.abs(pEffY(a) - pEffY(b)) < COVER;
   const isFree = (i) => {
     for (const j of remaining) {
       if (j !== i && positions[j].z > positions[i].z && overlap(positions[i], positions[j])) return false;
@@ -490,19 +491,21 @@ function generateLevel(level) {
   const dist = (a, b) =>
     Math.hypot(positions[a].x - positions[b].x, positions[a].y - positions[b].y) +
     Math.abs(positions[a].z - positions[b].z) * 2;
+  // các bộ tháo TRƯỚC = chơi được SỚM (mặt ruộng): gom GẦN cho đầu màn vào guồng;
+  // từ ~35% trở đi (vào lõi) mới rải XA — khó dần đều đúng nhịp Doggo
+  const nearPhase = Math.ceil(triples * 0.35);
   let group = 0;
   while (remaining.size) {
     const chosen = [];
+    const spreadNow = cfg.spread && group >= nearPhase;
     for (let k = 0; k < 3 && remaining.size; k++) {
       const free = [...remaining].filter(isFree);
       let pick;
       if (!chosen.length) {
         pick = free[Math.floor(Math.random() * free.length)];
       } else {
-        // màn khó: ô cùng bộ nằm XA nhau nhất (mở nhiều vùng cùng lúc mới gỡ được)
-        // màn 1: ô cùng bộ nằm GẦN nhau (dễ thấy, dễ học luật)
         const minD = (c) => Math.min(...chosen.map(o => dist(c, o)));
-        free.sort((a, b) => cfg.spread ? minD(b) - minD(a) : minD(a) - minD(b));
+        free.sort((a, b) => spreadNow ? minD(b) - minD(a) : minD(a) - minD(b));
         pick = free[Math.floor(Math.random() * Math.min(2, free.length))];
       }
       chosen.push(pick);
@@ -544,14 +547,17 @@ function computeSizes() {
 }
 
 // vị trí Y "mắt nhìn thấy": ô tầng cao được vẽ trồi lên trên một chút mỗi tầng,
-// nên luật che phải tính theo đúng chỗ ô hiển thị — thấy hở là bấm được
+// nên luật che phải tính theo đúng chỗ ô hiển thị — thấy hở là bấm được.
+// Chỉ tính là CHE khi đè ít nhất ~1/3 thân ô theo CẢ HAI trục;
+// chạm mép vài phần trăm (góc dính sliver) thì vẫn bấm được.
 const LIFT_Y = 0.1 / TILE_RATIO;
+const COVER = 0.7; // |lệch| < 0.7 ô = phần đè > 30%
 const effY = (t) => t.y - (t.flat ? 0 : t.z * LIFT_Y);
 
 function tileFree(t) {
   return !tiles.some(o =>
     o.state === "board" && o.z > t.z &&
-    Math.abs(o.x - t.x) < 1 && Math.abs(effY(o) - effY(t)) < 1
+    Math.abs(o.x - t.x) < COVER && Math.abs(effY(o) - effY(t)) < COVER
   );
 }
 
