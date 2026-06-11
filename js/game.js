@@ -91,12 +91,13 @@ const TYPES = [
     <circle cx="54" cy="30" r="7" fill="${C.white}"/>
     <circle cx="70" cy="46" r="5" fill="${C.white}"/>
     <rect x="36" y="54" width="28" height="32" rx="11" fill="${C.white}" stroke="${O}" stroke-width="5"/>` },
-  { name: "phô mai khoét lỗ", tone: "w", svg: `
-    <path d="M20 80 L82 80 Q90 80 90 70 L90 40 Q90 27 78 31 L22 60 Q12 65 13 72 Q14 80 20 80 Z"
-      fill="${C.yellow}" stroke="${O}" stroke-width="5" stroke-linejoin="round"/>
-    <circle cx="72" cy="58" r="8" fill="#b07f00"/>
-    <circle cx="54" cy="69" r="5.5" fill="#b07f00"/>
-    <circle cx="81" cy="70" r="4" fill="#b07f00"/>` },
+  { name: "pizza khuyết miếng", tone: "w", svg: `
+    <circle cx="50" cy="52" r="40" fill="${C.yellow}" stroke="${O}" stroke-width="5"/>
+    <path d="M50 52 L64 14 A40 40 0 0 1 88 38 Z" fill="${C.bg}" stroke="${O}" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="34" cy="40" r="6.5" fill="${C.red}"/>
+    <circle cx="58" cy="68" r="6.5" fill="${C.red}"/>
+    <circle cx="30" cy="64" r="5.5" fill="${C.red}"/>
+    <path d="M48 36 l7 3 M64 56 l7 -3 M40 78 l7 -2" stroke="${C.green}" stroke-width="4" stroke-linecap="round"/>` },
   { name: "ma trắng boo", tone: "n", svg: `
     <path d="M20 50 C20 24 34 12 50 12 C66 12 80 24 80 50 L80 76 Q74 70 68 76 Q62 84 56 77 Q50 70 44 77 Q38 84 32 76 Q26 70 20 76 Z"
       fill="${C.white}" stroke="${C.black}" stroke-width="5" stroke-linejoin="round"/>
@@ -105,15 +106,15 @@ const TYPES = [
     <ellipse cx="50" cy="60" rx="5.5" ry="7" fill="${C.black}"/>
     <circle cx="29" cy="54" r="4" fill="#f3b8cf"/>
     <circle cx="71" cy="54" r="4" fill="#f3b8cf"/>` },
-  { name: "trăng xanh ngủ", tone: "c", svg: `
-    <circle cx="50" cy="50" r="38" fill="${C.blue}" stroke="${O}" stroke-width="5"/>
-    <circle cx="32" cy="34" r="7" fill="${C.white}"/>
-    <circle cx="58" cy="24" r="5" fill="${C.white}"/>
-    <circle cx="70" cy="46" r="6" fill="${C.white}"/>
-    <circle cx="26" cy="56" r="4.5" fill="${C.white}"/>
-    <path d="M38 64 q5 5 10 0" stroke="${C.white}" stroke-width="4" fill="none" stroke-linecap="round"/>
-    <path d="M56 64 q5 5 10 0" stroke="${C.white}" stroke-width="4" fill="none" stroke-linecap="round"/>
-    <circle cx="50" cy="76" r="3.5" fill="${C.white}"/>` },
+  { name: "trăng khuyết ngủ", tone: "c", svg: `
+    <circle cx="50" cy="50" r="40" fill="#7ba7e8" stroke="${O}" stroke-width="5"/>
+    <circle cx="72" cy="30" r="29" fill="${C.bg}" stroke="${O}" stroke-width="4"/>
+    <circle cx="28" cy="46" r="5.5" fill="${C.white}"/>
+    <circle cx="44" cy="76" r="6" fill="${C.white}"/>
+    <circle cx="62" cy="68" r="4.5" fill="${C.white}"/>
+    <path d="M26 60 q4 4 8 0" stroke="${INK}" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M40 62 q4 4 8 0" stroke="${INK}" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="36" cy="72" r="3.5" fill="${INK}"/>` },
   { name: "banh xanh lá", tone: "c", svg: `
     <circle cx="50" cy="50" r="38" fill="${C.green}" stroke="${O}" stroke-width="5"/>
     <path d="M14 40 Q50 60 86 40" stroke="${C.white}" stroke-width="5" fill="none" stroke-linecap="round"/>
@@ -140,10 +141,10 @@ const TYPES = [
     <rect x="30" y="70" width="40" height="14" rx="5" fill="#b07f00" stroke="${O}" stroke-width="4"/>
     <circle cx="50" cy="32" r="6" fill="${C.white}"/>` },
   { name: "cá voi xanh", tone: "c", svg: `
-    <path d="M40 18 q2 -8 0 -12 M46 18 q4 -7 8 -9" stroke="${C.blue}" stroke-width="4.5" fill="none" stroke-linecap="round"/>
-    <path d="M78 56 Q92 52 94 64 Q84 66 76 62" fill="${C.blue}" stroke="${O}" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M40 18 q2 -8 0 -12 M46 18 q4 -7 8 -9" stroke="#21918c" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M78 56 Q92 52 94 64 Q84 66 76 62" fill="#21918c" stroke="${O}" stroke-width="4" stroke-linejoin="round"/>
     <path d="M10 56 Q10 28 44 28 Q82 28 84 52 Q84 64 70 68 Q40 76 18 66 Q10 62 10 56 Z"
-      fill="${C.blue}" stroke="${O}" stroke-width="5" stroke-linejoin="round"/>
+      fill="#21918c" stroke="${O}" stroke-width="5" stroke-linejoin="round"/>
     <circle cx="30" cy="44" r="5.5" fill="${C.white}"/><circle cx="30" cy="44" r="2.8" fill="${INK}"/>
     <path d="M16 54 q6 5 12 1" stroke="${INK}" stroke-width="3.5" fill="none" stroke-linecap="round"/>
     <path d="M44 56 q4 4 8 0" stroke="${C.white}" stroke-width="3.5" fill="none" stroke-linecap="round"/>` },
@@ -271,82 +272,81 @@ const TUTORIAL = { name: "Khởi Động 🌱", map: [
   ".22.",
 ]};
 
-// từ màn 2 — giải phẫu màn theo Doggo, khó dần đều TRONG màn:
-// MẶT RUỘNG mỏng 1-2 lớp (đầu màn dễ, nhiều lựa chọn) ->
-// LÕI CHÍNH 9-12 ô bề mặt nhưng sâu 10-13 tầng (bức tường cuối màn)
-// + CỨU TRỢ mỏng 2-3 lớp hoặc CỘT ĐƠN 1 ô úp kín không thấy lớp dưới.
+// từ màn 2 — "vành đai kép + 3 trụ mù + lõi 2x2": sau vành đai dễ,
+// frontier chỉ còn ~11 đỉnh mù với 18 loại — gần như toàn ô lẻ,
+// phải ghi nhớ vị trí từng ô đã lộ; đào mò là tràn khay.
 const PATTERNS = [
-  { name: "Nhật Thực 🌘", map: [ // lõi 3x4 giữa + 4 cứu trợ mỏng + 4 cột đơn
-    "22222..22222",
-    "233.1111.332",
-    "233.1111.332",
-    "22.7eee7..22",
-    "22..eee...22",
-    "22..eee...22",
-    "22.7eee7..22",
-    "233.1111.332",
-    "233.1111.332",
-    "22222..22222",
+  { name: "Nhật Thực 🌘", map: [
+    "222222222222",
+    "222222222222",
+    "2.e......e.2",
+    "2..........2",
+    "2....ee....2",
+    "2....ee....2",
+    "2....77....2",
+    "2....e.....2",
+    "2....77....2",
+    "222222222222",
   ]},
-  { name: "Trái Tim 💗", map: [ // lõi lệch lên trên + má cột đơn + thân mỏng
-    "22222..22222",
-    "233.eee..332",
-    "233.eee..332",
-    "22.7eee7..22",
-    "22..eee...22",
-    "222.222.2222",
-    "22222..22222",
-    "22.7.22.7.22",
-    "22222..22222",
-    "22222..22222",
+  { name: "Trái Tim 💗", map: [
+    "222222222222",
+    "222222222222",
+    "2..e....e..2",
+    "2..........2",
+    "2....ee....2",
+    "2....ee....2",
+    "2.77....77.2",
+    "2.....e....2",
+    "2..........2",
+    "222222222222",
   ]},
-  { name: "Pháo Đài 🏰", map: [ // SONG TRỤ 2 lõi sâu + cứu trợ + cột đơn
-    "22222..22222",
-    "22222..22222",
-    "22.ee22ee.22",
-    "27.ee22ee.72",
-    "22.ee22ee.22",
-    "233.1111.332",
-    "233.1111.332",
-    "22222..22222",
-    "22222..22222",
-    "22222..22222",
+  { name: "Pháo Đài 🏰", map: [
+    "222222222222",
+    "222222222222",
+    "2.e........2",
+    "2.........e2",
+    "2....ee....2",
+    "2....ee....2",
+    "2....77....2",
+    "2.e...77...2",
+    "2..........2",
+    "222222222222",
   ]},
-  { name: "Bươm Bướm 🦋", map: [ // lõi thân trên + cánh mỏng + cột đơn vai
-    "22222..22222",
-    "233..eee.332",
-    "233..eee.332",
-    "22.7.eee.722",
-    "22...eee..22",
-    "22222..22222",
-    "233.1111.332",
-    "233.1111.332",
-    "22222..22222",
-    "22222..22222",
+  { name: "Bươm Bướm 🦋", map: [
+    "222222222222",
+    "222222222222",
+    "2.e..77..e.2",
+    "2..........2",
+    "2....ee....2",
+    "2....ee....2",
+    "2..........2",
+    "2....e.77..2",
+    "2..........2",
+    "222222222222",
   ]},
-  { name: "Chiếc Nhẫn 💍", map: [ // viên đá 3x3 sâu nhất + 8 cột đơn vây quanh
-    "22222..22222",
-    "22.7.22.7.22",
-    "22222..22222",
-    "2.7.eee.7.22",
-    "22..eee...22",
-    "2.7.eee.7.22",
-    "22222..22222",
-    "22.7.22.7.22",
-    "22222..22222",
-    "22222..22222",
+  { name: "Chiếc Nhẫn 💍", map: [
+    "222222222222",
+    "222222222222",
+    "2...e..e...2",
+    "2..........2",
+    "2....ee....2",
+    "2....ee....2",
+    "2....77....2",
+    "2....e..77.2",
+    "2..........2",
+    "222222222222",
   ]},
-  { name: "La Bàn 🧭", map: [ // kim lõi giữa + cứu trợ chéo + cột đơn 4 hướng
-    "22222..22222",
-    "233.1111.332",
-    "22.7eee7..22",
-    "22..eee...22",
-    "22..eee...22",
-    "22.7eee7..22",
-    "233.1111.332",
-    "22222..22222",
-    "22222..22222",
-    "22222..22222",
+  { name: "La Bàn 🧭", map: [
+    "222222222222",
+    "222222222222",
+    "2....ee....2",
+    "2..........2",
+    "2....ee....2",
+    "2....ee....2",
+    "2....77....2",
+    "2.77..e....2",
+    "2..........2",
+    "222222222222",
   ]},
 ];
 
@@ -410,8 +410,12 @@ function generateLevel(level) {
   }
   const hAt = (x, y) => (x >= 0 && y >= 0 && x < gridW && y < gridH) ? hMap[y][x] : 0;
 
-  const blockOK = (x, y, z) => // đủ khối 2x2 cao hơn z để đặt ô lệch nửa
-    hAt(x, y) > z && hAt(x + 1, y) > z && hAt(x, y + 1) > z && hAt(x + 1, y + 1) > z;
+  // ô thuộc LÕI SÂU (h>=10) chồng THẲNG úp kín — không xếp lệch, không lộ icon dưới:
+  // cuối màn là vùng ẩn số tuyệt đối, máy giỏi mấy cũng phải đào mò
+  const deep = (x, y) => hAt(x, y) >= 10;
+  const blockOK = (x, y, z) => // đủ khối 2x2 cao hơn z (và không phải lõi úp) để đặt ô lệch nửa
+    hAt(x, y) > z && hAt(x + 1, y) > z && hAt(x, y + 1) > z && hAt(x + 1, y + 1) > z &&
+    !deep(x, y) && !deep(x + 1, y) && !deep(x, y + 1) && !deep(x + 1, y + 1);
 
   // xếp tầng THEO TỪNG Ô (không gom vùng): giếng/trụ hẹp dù nằm sát mặt ruộng
   // vẫn giữ trọn chiều sâu của mình
@@ -461,6 +465,11 @@ function generateLevel(level) {
   }
   const triples = positions.length / 3;
 
+  // ĐUÔI MÀN HIỂM: các bộ cuối cùng (nằm sâu nhất, vùng cột úp mù) là các loại
+  // KHÁC NHAU, mỗi loại đúng 1 bộ — cuối màn không còn "bản thứ 3 dễ kiếm",
+  // phải ghi nhớ và tính trước, đào mò là tràn khay
+  // (typePool được sắp xếp lại ở dưới, sau khi rút loại)
+
   // chọn loại ô từ nhóm icon dễ phân biệt nhất trước,
   // rút XEN KẼ tông nóng / lạnh để màn không bị "nóng rực" một tông
   const poolSize = Math.min(cfg.types + 2, TYPES.length);
@@ -475,6 +484,22 @@ function generateLevel(level) {
     pickWarm = !pickWarm;
   }
   const typePool = shuffleArr([...Array(triples).keys()].map(t => typeIds[t % cfg.types]));
+  if (cfg.spread) {
+    // 40% đầu: bộ trộn tự do (đầu màn dễ). 60% sau: các bộ xếp VÒNG TRÒN đủ
+    // 18 loại — hai bộ cùng loại cách nhau ~54 ô, vùng mù không bao giờ có
+    // "bản thứ 3 nằm gần", phải nhớ và ôm ô lẻ rất lâu mới ghép được
+    const easyCount = Math.ceil(triples * 0.4);
+    const head = typePool.slice(0, easyCount);
+    const rest = typePool.length - easyCount;
+    const rr = [];
+    let order = [];
+    for (let i = 0; i < rest; i++) {
+      if (!order.length) order = shuffleArr(typeIds.slice());
+      rr.push(order.pop());
+    }
+    typePool.length = 0;
+    typePool.push(...head, ...rr);
+  }
 
   // "THÁO RỜI NGƯỢC": máy tự gỡ bàn cờ từng ô đang bốc được, cứ 3 ô gỡ liền
   // nhau thì gán cùng loại. Thứ tự tháo chính là một lời giải hợp lệ,
@@ -496,29 +521,50 @@ function generateLevel(level) {
     Math.abs(positions[a].z - positions[b].z) * 2;
   // các bộ tháo TRƯỚC = chơi được SỚM (mặt ruộng): gom GẦN cho đầu màn vào guồng;
   // từ ~35% trở đi (vào lõi) mới rải XA — khó dần đều đúng nhịp Doggo
-  const nearPhase = Math.ceil(triples * 0.35);
-  let group = 0;
+  // ===== THÁO RỜI XEN KẼ =====
+  // Màn 1 / 35% đầu màn khó: bộ 3 tháo liên tiếp (đầu màn dễ vào guồng).
+  // Từ giữa màn: cho phép 3 BỘ MỞ XEN KẼ — thành viên cùng bộ cách nhau
+  // hàng chục nước, lời giải vẫn chỉ cần giữ tối đa ~7 ô khay (vẫn giải được),
+  // nhưng người chơi buộc phải ôm ô lẻ và nhớ vị trí — đào mò là tràn khay.
+  // "Mũi khoan": ưu tiên tháo ô vừa lộ ra -> khoan sâu một mạch, lệch pha độ sâu.
+  const hot = [];
+  const open = []; // các bộ đang mở dở {type, count}
+  let poolIdx = 0, pickCount = 0;
+  const totalPicks = positions.length;
   while (remaining.size) {
-    const chosen = [];
-    const spreadNow = cfg.spread && group >= nearPhase;
-    for (let k = 0; k < 3 && remaining.size; k++) {
-      const free = [...remaining].filter(isFree);
-      let pick;
-      if (!chosen.length) {
-        pick = free[Math.floor(Math.random() * free.length)];
-      } else {
-        const minD = (c) => Math.min(...chosen.map(o => dist(c, o)));
-        free.sort((a, b) => spreadNow ? minD(b) - minD(a) : minD(a) - minD(b));
-        pick = free[Math.floor(Math.random() * Math.min(2, free.length))];
+    const late = cfg.spread && pickCount >= totalPicks * 0.35;
+    const free = [...remaining].filter(isFree);
+    let pick;
+    if (late) {
+      while (hot.length && pick === undefined) {
+        const j = hot.pop();
+        if (remaining.has(j) && isFree(j)) pick = j;
       }
-      chosen.push(pick);
-      typeOf[pick] = typePool[group];
-      solveOrder.push(pick);
-      remaining.delete(pick);
     }
-    group++;
+    if (pick === undefined) pick = free[Math.floor(Math.random() * free.length)];
+
+    const L = late ? 3 : 1; // số bộ được mở xen kẽ
+    const needed = open.reduce((a, g) => a + (3 - g.count), 0);
+    const canOpen = poolIdx < typePool.length && open.length < L &&
+                    remaining.size >= needed + 3;
+    let g;
+    if (!open.length || (canOpen && Math.random() < 0.55)) {
+      g = { type: typePool[poolIdx++], count: 0 };
+      open.push(g);
+    } else {
+      g = open[Math.floor(Math.random() * open.length)];
+    }
+    typeOf[pick] = g.type;
+    solveOrder.push(pick);
+    if (++g.count === 3) open.splice(open.indexOf(g), 1);
+    remaining.delete(pick);
+    pickCount++;
+    for (const j of remaining) if (overlap(positions[pick], positions[j])) hot.push(j);
   }
-  if (DEV) window.__SOLUTION = solveOrder; // cho phép test tự động chơi theo lời giải
+  if (DEV) {
+    window.__SOLUTION = solveOrder; // cho phép test tự động chơi theo lời giải
+    window.__SNAPSHOT = () => tiles.map(t => ({ id: t.id, type: t.type, x: t.x, y: t.y, z: t.z, flat: t.flat }));
+  }
 
   tiles = positions.map((p, i) => ({
     id: i, type: typeOf[i], x: p.x, y: p.y, z: p.z, flat: !!p.flat, state: "board", el: null,
