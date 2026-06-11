@@ -256,168 +256,83 @@ const TUTORIAL = { name: "Khởi Động 🌱", map: [
   ".22.",
 ]};
 
-// từ màn 2 — bố cục ĐA CỤM: mỗi màn 4-6 cụm cấu trúc khác nhau rải khắp bàn,
-// người chơi phải đọc và ráp nối nhiều vùng cùng lúc, không phải đào 1 đống mù
-// Mỗi bố cục = các "ĐẢO NGẦM" (map) + "TẤM CHĂN" so le phủ lên trên (cap).
-// Nhìn ngoài chỉ thấy 1-2 khối lớn xếp so le; khui 2-3 lớp bề mặt
-// thì vỡ ra thành 5-7 cụm nhỏ — cụm tháp chồng khít, cụm so le thấy đáy.
+// từ màn 2 — giải phẫu màn theo Doggo, khó dần đều TRONG màn:
+// MẶT RUỘNG mỏng 1-2 lớp (đầu màn dễ, nhiều lựa chọn) ->
+// LÕI CHÍNH 9-12 ô bề mặt nhưng sâu 10-13 tầng (bức tường cuối màn)
+// + CỨU TRỢ mỏng 2-3 lớp hoặc CỘT ĐƠN 1 ô úp kín không thấy lớp dưới.
 const PATTERNS = [
-  { name: "Nhật Thực 🌘",
-    map: [ // giếng sâu (8) + khối L 3-mặt (6) + phiến mỏng (2)
-      "............",
-      ".66....2222.",
-      ".6.....2222.",
-      "............",
-      ".8...66...8.",
-      ".....6......",
-      ".........66.",
-      ".222......6.",
-      ".222..66....",
-      "......6.....",
-    ],
-    cap: { layers: 2, mask: [ // đĩa nhật thực phủ gần kín bàn
-      "............",
-      ".1111111111.",
-      "111111111111",
-      "111111111111",
-      "111111111111",
-      "111111111111",
-      "111111111111",
-      "111111111111",
-      ".1111111111.",
-      "............",
-    ]},
-  },
-  { name: "Trái Tim 💗",
-    map: [ // 2 thùy L + 2 má giếng + sống phiến mỏng + đuôi L
-      "............",
-      ".66......66.",
-      ".6........6.",
-      "..88....88..",
-      "....2222....",
-      "....2222....",
-      "....2222....",
-      ".66...66.8..",
-      ".6....6.....",
-      "............",
-    ],
-    cap: { layers: 2, mask: [ // chăn hình trái tim
-      "............",
-      "11111..11111",
-      "111111111111",
-      "111111111111",
-      "111111111111",
-      "111111111111",
-      ".1111111111.",
-      "..11111111..",
-      "...111111...",
-      "............",
-    ]},
-  },
-  { name: "Pháo Đài 🏰",
-    map: [ // 4 giếng góc + 4 khối L + sảnh phiến mỏng rộng
-      ".8........8.",
-      "............",
-      "..66....66..",
-      "..6......6..",
-      "8.22222222.8",
-      "8.22222222.8",
-      "..66....66..",
-      "..6......6..",
-      "............",
-      ".8........8.",
-    ],
-    cap: { layers: 3, mask: [ // mái thành phủ rộng
-      "............",
-      ".1111111111.",
-      "111111111111",
-      "111111111111",
-      "111111111111",
-      "111111111111",
-      "111111111111",
-      ".1111111111.",
-      "............",
-      "............",
-    ]},
-  },
-  { name: "Bươm Bướm 🦋",
-    map: [ // cánh = phiến mỏng, vai = khối L, thân = giếng đôi
-      ".222....222.",
-      ".222....222.",
-      "............",
-      "..66.88.66..",
-      "..6......6..",
-      "....8..8....",
-      "..8..88..8..",
-      ".66......66.",
-      ".6........6.",
-      "............",
-    ],
-    cap: { layers: 2, mask: [ // chăn hình nơ
-      "............",
-      ".1111..1111.",
-      "111111111111",
-      ".1111111111.",
-      "..11111111..",
-      "..11111111..",
-      ".1111111111.",
-      "111111111111",
-      ".1111..1111.",
-      "............",
-    ]},
-  },
-  { name: "Chiếc Nhẫn 💍",
-    map: [ // vòng nhẫn 12 giếng sâu + viên đá tháp giữa + 2 phiến mỏng
-      "....2222....",
-      ".8........8.",
-      "....8..8....",
-      ".8...66...8.",
-      ".8...66...8.",
-      "....8..8....",
-      ".8........8.",
-      "....2222....",
-      "....8..8....",
-      "............",
-    ],
-    cap: { layers: 2, mask: [ // chăn tròn
-      "............",
-      "...111111...",
-      ".1111111111.",
-      "111111111111",
-      "111111111111",
-      "111111111111",
-      "111111111111",
-      ".1111111111.",
-      "...111111...",
-      "............",
-    ]},
-  },
-  { name: "La Bàn 🧭",
-    map: [ // 4 kim L 4 hướng + giếng chéo + trục phiến mỏng
-      ".....66.....",
-      ".....6......",
-      "..8......8..",
-      ".66..22..66.",
-      ".6...22...6.",
-      "....8..8....",
-      ".....66.....",
-      "......6.....",
-      ".66......66.",
-      ".6........6.",
-    ],
-    cap: { layers: 3, mask: [ // chăn kim cương lớn
-      "............",
-      "...111111...",
-      "..11111111..",
-      ".1111111111.",
-      "111111111111",
-      "111111111111",
-      ".1111111111.",
-      "..11111111..",
-      "...111111...",
-      "............",
-    ]},
-  },
+  { name: "Nhật Thực 🌘", map: [ // lõi 3x4 giữa + 4 cứu trợ mỏng + 4 cột đơn
+    "222222222222",
+    "233.2222.332",
+    "233.2222.332",
+    "22.5aaa5..22",
+    "22..aaa...22",
+    "22..aaa...22",
+    "22.5aaa5..22",
+    "233.2222.332",
+    "233.2222.332",
+    "222222222222",
+  ]},
+  { name: "Trái Tim 💗", map: [ // lõi lệch lên trên + má cột đơn + thân mỏng
+    "222222222222",
+    "233.aaa..332",
+    "233.aaa..332",
+    "22.5aaa5..22",
+    "22..aaa...22",
+    "222.222.2222",
+    "222222222222",
+    "22.5.22.5.22",
+    "222222222222",
+    "222222222222",
+  ]},
+  { name: "Pháo Đài 🏰", map: [ // SONG TRỤ 2 lõi sâu + cứu trợ + cột đơn
+    "222222222222",
+    "222222222222",
+    "22.aa22aa.22",
+    "25.aa22aa.52",
+    "22.aa22aa.22",
+    "233.2222.332",
+    "233.2222.332",
+    "222222222222",
+    "222222222222",
+    "222222222222",
+  ]},
+  { name: "Bươm Bướm 🦋", map: [ // lõi thân trên + cánh mỏng + cột đơn vai
+    "222222222222",
+    "233..aaa.332",
+    "233..aaa.332",
+    "22.5.aaa.522",
+    "22...aaa..22",
+    "222222222222",
+    "233.2222.332",
+    "233.2222.332",
+    "222222222222",
+    "222222222222",
+  ]},
+  { name: "Chiếc Nhẫn 💍", map: [ // viên đá 3x3 sâu nhất + 8 cột đơn vây quanh
+    "222222222222",
+    "22.5.22.5.22",
+    "222222222222",
+    "2.5.ccc.5.22",
+    "22..ccc...22",
+    "2.5.ccc.5.22",
+    "222222222222",
+    "22.5.22.5.22",
+    "222222222222",
+    "222222222222",
+  ]},
+  { name: "La Bàn 🧭", map: [ // kim lõi giữa + cứu trợ chéo + cột đơn 4 hướng
+    "222222222222",
+    "233.2222.332",
+    "22.5aaa5..22",
+    "22..aaa...22",
+    "22..aaa...22",
+    "22.5aaa5..22",
+    "233.2222.332",
+    "222222222222",
+    "222222222222",
+    "222222222222",
+  ]},
 ];
 
 // ============================================================
@@ -467,101 +382,49 @@ function generateLevel(level) {
     hMap.push([]);
     for (let x = 0; x < gridW; x++) {
       const ch = pattern.map[y][x];
-      let h = ch === "." ? 0 : +ch;
+      // độ cao ghi bằng ký tự base36: '1'-'9', 'a'=10, 'c'=12, 'e'=14...
+      let h = ch === "." ? 0 : parseInt(ch, 36);
       // chỉ khối HẸP-SÂU (h>=4) mới dày thêm theo màn; phiến rộng luôn mỏng
-      if (h >= 4) h = Math.min(h + cfg.tier, 8);
+      if (h >= 4) h = Math.min(h + cfg.tier, 16);
       hMap[y].push(h);
       maxH = Math.max(maxH, h);
     }
   }
   const hAt = (x, y) => (x >= 0 && y >= 0 && x < gridW && y < gridH) ? hMap[y][x] : 0;
 
-  // gán nhãn vùng liên thông (4 hướng) — mỗi cụm hình xếp tầng độc lập,
-  // tháp góc không bị "ăn theo" cách co của lõi giữa
-  const region = Array.from({ length: gridH }, () => Array(gridW).fill(-1));
-  let nReg = 0;
-  for (let y0 = 0; y0 < gridH; y0++) for (let x0 = 0; x0 < gridW; x0++) {
-    if (hAt(x0, y0) === 0 || region[y0][x0] >= 0) continue;
-    const stack = [[x0, y0]];
-    region[y0][x0] = nReg;
-    while (stack.length) {
-      const [cx, cy] = stack.pop();
-      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
-        const nx = cx + dx, ny = cy + dy;
-        if (hAt(nx, ny) > 0 && region[ny][nx] < 0) { region[ny][nx] = nReg; stack.push([nx, ny]); }
-      }
-    }
-    nReg++;
-  }
-
   const blockOK = (x, y, z) => // đủ khối 2x2 cao hơn z để đặt ô lệch nửa
     hAt(x, y) > z && hAt(x + 1, y) > z && hAt(x, y + 1) > z && hAt(x + 1, y + 1) > z;
 
+  // xếp tầng THEO TỪNG Ô (không gom vùng): giếng/trụ hẹp dù nằm sát mặt ruộng
+  // vẫn giữ trọn chiều sâu của mình
   let positions = [];
   for (let y = 0; y < gridH; y++) for (let x = 0; x < gridW; x++)
     if (hAt(x, y) > 0) positions.push({ x, y, z: 0 });
 
   for (let z = 1; z < maxH; z++) {
     if (z % 2 === 1) {
-      // tầng lẻ: lệch nửa ô trên các khối 2x2 -> ô dưới lộ một nửa
-      const placed = new Set();
+      // tầng lẻ: chỗ đủ khối 2x2 thì lệch nửa ô (lộ ô dưới);
+      // ô hẹp không thuộc khối nào thì chồng thẳng (giếng úp kín)
+      const inBlock = new Set();
       for (let y = 0; y < gridH - 1; y++) for (let x = 0; x < gridW - 1; x++)
         if (blockOK(x, y, z)) {
           positions.push({ x: x + 0.5, y: y + 0.5, z });
-          placed.add(region[y][x]);
+          inBlock.add(x + "," + y).add((x + 1) + "," + y)
+                 .add(x + "," + (y + 1)).add((x + 1) + "," + (y + 1));
         }
-      // vùng hẹp 1 ô không đặt lệch được -> chồng thẳng (tháp che kín)
       for (let y = 0; y < gridH; y++) for (let x = 0; x < gridW; x++)
-        if (hAt(x, y) > z && !placed.has(region[y][x])) positions.push({ x, y, z });
+        if (hAt(x, y) > z && !inBlock.has(x + "," + y)) positions.push({ x, y, z });
     } else {
-      // tầng chẵn: ưu tiên co vào trong (lộ mép tầng dưới);
-      // vùng nào không co được thì xếp kiểu chùa tháp trên các khối 2x2
-      const byReg = new Map();
-      for (let y = 0; y < gridH; y++) for (let x = 0; x < gridW; x++) {
-        if (hAt(x, y) <= z) continue;
-        const r = region[y][x];
-        if (!byReg.has(r)) byReg.set(r, { eroded: [], cand: [] });
-        const g = byReg.get(r);
-        g.cand.push({ x, y, z });
-        if (hAt(x - 1, y) > z && hAt(x + 1, y) > z && hAt(x, y - 1) > z && hAt(x, y + 1) > z)
-          g.eroded.push({ x, y, z });
-      }
-      for (const g of byReg.values()) {
-        if (g.eroded.length) { positions.push(...g.eroded); continue; }
-        const pagoda = g.cand.filter(c =>
-          [[c.x - 1, c.y - 1], [c.x, c.y - 1], [c.x - 1, c.y], [c.x, c.y]]
-            .some(([bx, by]) => blockOK(bx, by, z - 1)));
-        positions.push(...(pagoda.length ? pagoda : g.cand));
-      }
-    }
-  }
-
-  // "MÁI NGÓI" BỀ MẶT: hai mái lợp từ mép trên & mép dưới trượt vào giữa,
-  // mỗi hàng ngói đè NỬA hàng trước (z tăng dần) — chỉ hàng trong cùng bốc được.
-  // Bề mặt phải bóc tuần tự từng hàng, không còn kiểu "cả mặt trên tự do" dễ dãi.
-  if (pattern.cap) {
-    const m = pattern.cap.mask;
-    const at1 = (x, y) => x >= 0 && y >= 0 && y < m.length && x < m[0].length && m[y][x] === "1";
-    const used = [];
-    m.forEach((r, y) => { if (r.includes("1")) used.push(y); });
-    let yTop = used[0], yBot = used[used.length - 1] - 1;
-    const placeRow = (yy, z) => {
-      const y0 = Math.floor(yy), frac = Math.abs(yy - y0) > 0.01;
-      for (let x = 0; x < gridW; x++)
-        if (at1(x, y0) && (!frac || at1(x, y0 + 1)))
-          positions.push({ x, y: yy, z });
-    };
-    for (let i = 0; yTop <= yBot + 0.01; i++) {
-      placeRow(yTop, maxH + i);
-      if (yBot - yTop >= 1) placeRow(yBot, maxH + i); // tránh 2 mái đụng nhau cùng tầng
-      yTop += 0.5; yBot -= 0.5;
+      // tầng chẵn: nằm đúng lưới trên mọi ô còn cao hơn z
+      for (let y = 0; y < gridH; y++) for (let x = 0; x < gridW; x++)
+        if (hAt(x, y) > z) positions.push({ x, y, z });
     }
   }
 
   // từ màn 2: thêm 2 "XẤP BÀI" nằm ngang dưới bàn cờ (như Doggo) —
   // cả xấp chồng lệch ngang, chỉ thấy và bốc được lá ngoài cùng
   if (level >= 2) {
-    const len = 10 + cfg.tier;
+    const len = 12 + cfg.tier;
     for (let k = 0; k < len; k++) {
       positions.push({ x: 0.3 + k * 0.4, y: gridH + 0.3, z: k, flat: true });
       positions.push({ x: gridW - 1.3 - k * 0.4, y: gridH + 0.3, z: k, flat: true });
