@@ -599,7 +599,8 @@ function generateLevel(level) {
   // nhau thì gán cùng loại. Thứ tự tháo chính là một lời giải hợp lệ,
   // nên MỌI màn đều giải được bằng logic — thua là do tính sai, không phải do đen.
   const remaining = new Set(positions.map((_, i) => i));
-  const overlap = (a, b) => Math.abs(a.x - b.x) < 1 && Math.abs(a.y - b.y) < 1;
+  const pEffY = (p) => p.y - (p.flat ? 0 : p.z * LIFT_Y); // cùng luật che với lúc chơi
+  const overlap = (a, b) => Math.abs(a.x - b.x) < 1 && Math.abs(pEffY(a) - pEffY(b)) < 1;
   const isFree = (i) => {
     for (const j of remaining) {
       if (j !== i && positions[j].z > positions[i].z && overlap(positions[i], positions[j])) return false;
@@ -664,10 +665,15 @@ function computeSizes() {
   boardEl.style.top = Math.max(0, (boardWrap.clientHeight - boardH) / 2) + "px";
 }
 
+// vị trí Y "mắt nhìn thấy": ô tầng cao được vẽ trồi lên trên một chút mỗi tầng,
+// nên luật che phải tính theo đúng chỗ ô hiển thị — thấy hở là bấm được
+const LIFT_Y = 0.1 / TILE_RATIO;
+const effY = (t) => t.y - (t.flat ? 0 : t.z * LIFT_Y);
+
 function tileFree(t) {
   return !tiles.some(o =>
     o.state === "board" && o.z > t.z &&
-    Math.abs(o.x - t.x) < 1 && Math.abs(o.y - t.y) < 1
+    Math.abs(o.x - t.x) < 1 && Math.abs(effY(o) - effY(t)) < 1
   );
 }
 
