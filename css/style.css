@@ -449,6 +449,22 @@ body.dev #dev-panel { display: flex; }
 .modal-card h2 { color: #7a4f1d; margin: 8px 0; }
 .modal-card p { color: #9a7a4f; margin-bottom: 18px; line-height: 1.5; }
 
+.challenge-title {
+  color: #c4231b !important;
+  letter-spacing: 2px;
+  animation: skill-glow 1.2s infinite alternate;
+}
+.win-elite {
+  margin: 6px 0 10px;
+  padding: 10px;
+  background: linear-gradient(180deg, #ffe9b8, #ffd97a);
+  border: 2px solid #e0a800;
+  border-radius: 12px;
+  color: #7a4f1d;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
 .modal-rank-card { max-height: 80vh; display: flex; flex-direction: column; }
 .rank-list {
   flex: 1;

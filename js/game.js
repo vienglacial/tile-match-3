@@ -837,10 +837,13 @@ function checkEnd() {
     if (session.level + 1 > p.maxLevel) p.maxLevel = session.level + 1;
     if (session.score > p.bestScore) p.bestScore = session.score;
     savePlayers();
+    const beatLv2 = session.level === 2;
     session.level += 1;
     saveSession();
-    $("win-info").textContent =
-      `Thưởng +${bonus} điểm! Tổng điểm: ${session.score}`;
+    $("win-info").innerHTML = beatLv2
+      ? `<div class="win-elite">👑 BẠN CHÍNH THỨC LÀ 1%!<br>Vượt màn chỉ 1/100 người qua nổi.</div>
+         Chụp màn hình khoe bạn bè đi! Thưởng +${bonus} điểm — Tổng: ${session.score}`
+      : `Thưởng +${bonus} điểm! Tổng điểm: ${session.score}`;
     setTimeout(() => $("modal-win").classList.add("active"), 450);
   } else if (tray.length >= traySize()) {
     // ===== THUA =====
@@ -848,10 +851,13 @@ function checkEnd() {
     sndLose();
     const p = players[session.name];
     p.games += 1;
+    if (session.level === 2) p.lv2tries = (p.lv2tries || 0) + 1;
     if (session.score > p.bestScore) p.bestScore = session.score;
     savePlayers();
-    $("lose-info").textContent =
-      `Điểm đạt được: ${session.score} — Kỷ lục của bạn: ${p.bestScore}`;
+    $("lose-info").innerHTML = session.level === 2
+      ? `Thử thách 1% — lần thử thứ <b>${p.lv2tries}</b>.<br>
+         99% bỏ cuộc ở đúng chỗ này. Còn bạn? 😏<br>Điểm: ${session.score} — Kỷ lục: ${p.bestScore}`
+      : `Điểm đạt được: ${session.score} — Kỷ lục của bạn: ${p.bestScore}`;
     setTimeout(() => $("modal-lose").classList.add("active"), 450);
   }
 }
@@ -1042,6 +1048,15 @@ function startLevel() {
   renderTray();
   renderBoard();
   toast(`Màn ${session.level} — bố cục ${patternName}`);
+
+  // HOOK "Thử thách 1%": màn 2 là bức tường — nêu thẳng thách thức
+  if (session.level === 2) {
+    const tries = players[session.name].lv2tries || 0;
+    $("challenge-tries").innerHTML = tries > 0
+      ? `Đây là lần thử thứ <b>${tries + 1}</b> của bạn. Bỏ cuộc là thành 99% đó nha…`
+      : `Chưa ai trong máy này làm được. Bạn là người đầu tiên?`;
+    $("modal-challenge").classList.add("active");
+  }
 }
 
 function showScreen(name) {
@@ -1171,6 +1186,8 @@ $("btn-lose-home").addEventListener("click", () => {
   renderHeroSelect();
   showScreen("home");
 });
+
+$("btn-challenge-go").addEventListener("click", () => $("modal-challenge").classList.remove("active"));
 
 $("btn-skill").addEventListener("click", onSkillButton);
 $("btn-undo").addEventListener("click", useUndo);
