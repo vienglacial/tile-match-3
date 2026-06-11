@@ -105,6 +105,33 @@ const TYPES = [
     <ellipse cx="50" cy="60" rx="5.5" ry="7" fill="${C.black}"/>
     <circle cx="29" cy="54" r="4" fill="#f3b8cf"/>
     <circle cx="71" cy="54" r="4" fill="#f3b8cf"/>` },
+  { name: "trăng xanh ngủ", tone: "c", svg: `
+    <circle cx="50" cy="50" r="38" fill="${C.blue}" stroke="${O}" stroke-width="5"/>
+    <circle cx="32" cy="34" r="7" fill="${C.white}"/>
+    <circle cx="58" cy="24" r="5" fill="${C.white}"/>
+    <circle cx="70" cy="46" r="6" fill="${C.white}"/>
+    <circle cx="26" cy="56" r="4.5" fill="${C.white}"/>
+    <path d="M38 64 q5 5 10 0" stroke="${C.white}" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M56 64 q5 5 10 0" stroke="${C.white}" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="50" cy="76" r="3.5" fill="${C.white}"/>` },
+  { name: "banh xanh lá", tone: "c", svg: `
+    <circle cx="50" cy="50" r="38" fill="${C.green}" stroke="${O}" stroke-width="5"/>
+    <path d="M14 40 Q50 60 86 40" stroke="${C.white}" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M32 16 Q46 50 32 84" stroke="${C.white}" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M68 16 Q54 50 68 84" stroke="${C.white}" stroke-width="5" fill="none" stroke-linecap="round"/>` },
+  { name: "máy cassette", tone: "w", svg: `
+    <rect x="8" y="24" width="84" height="54" rx="10" fill="#8a5a2b" stroke="${O}" stroke-width="5"/>
+    <rect x="18" y="33" width="64" height="24" rx="8" fill="${C.bg}"/>
+    <circle cx="33" cy="45" r="6.5" fill="#8a5a2b"/>
+    <circle cx="67" cy="45" r="6.5" fill="#8a5a2b"/>
+    <rect x="40" y="42" width="20" height="6" rx="3" fill="#d8b888"/>
+    <rect x="24" y="64" width="52" height="8" rx="4" fill="#5f3d1d"/>` },
+  { name: "sách xanh đậm", tone: "c", svg: `
+    <rect x="20" y="12" width="60" height="76" rx="7" fill="#1e3f8f" stroke="${O}" stroke-width="5"/>
+    <rect x="26" y="12" width="8" height="76" fill="#16306e"/>
+    <polygon points="60,12 74,12 74,38 67,30 60,38" fill="${C.red}"/>
+    <path d="M42 56 h26" stroke="${C.white}" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M42 68 h18" stroke="${C.white}" stroke-width="4.5" stroke-linecap="round"/>` },
 ];
 
 function faceSVG(type) {
@@ -250,14 +277,14 @@ const PATTERNS = [
     ],
     cap: { layers: 2, mask: [ // đĩa nhật thực phủ gần kín bàn
       "............",
-      "..11111111..",
       ".1111111111.",
+      "111111111111",
+      "111111111111",
+      "111111111111",
+      "111111111111",
+      "111111111111",
+      "111111111111",
       ".1111111111.",
-      ".1111111111.",
-      ".1111111111.",
-      ".1111111111.",
-      ".1111111111.",
-      "..11111111..",
       "............",
     ]},
   },
@@ -277,13 +304,13 @@ const PATTERNS = [
     cap: { layers: 2, mask: [ // chăn hình trái tim
       "............",
       ".1111..1111.",
-      ".1111111111.",
-      ".1111111111.",
+      "111111111111",
+      "111111111111",
+      "111111111111",
       ".1111111111.",
       "..11111111..",
       "...111111...",
       "....1111....",
-      ".....11.....",
       "............",
     ]},
   },
@@ -303,12 +330,12 @@ const PATTERNS = [
     cap: { layers: 3, mask: [ // mái thành 3 lớp dày
       "............",
       "............",
-      "..11111111..",
-      "..11111111..",
-      "..11111111..",
-      "..11111111..",
-      "..11111111..",
-      "..11111111..",
+      ".1111111111.",
+      ".1111111111.",
+      ".1111111111.",
+      ".1111111111.",
+      ".1111111111.",
+      ".1111111111.",
       "............",
       "............",
     ]},
@@ -329,12 +356,12 @@ const PATTERNS = [
     cap: { layers: 2, mask: [ // chăn hình nơ
       "............",
       ".1111..1111.",
+      "111111111111",
       ".1111111111.",
       "..11111111..",
-      "...111111...",
-      "...111111...",
       "..11111111..",
       ".1111111111.",
+      "111111111111",
       ".1111..1111.",
       "............",
     ]},
@@ -354,14 +381,14 @@ const PATTERNS = [
     ],
     cap: { layers: 2, mask: [ // chăn tròn
       "............",
-      "....1111....",
-      "..11111111..",
+      "...111111...",
       ".1111111111.",
+      "111111111111",
+      "111111111111",
+      "111111111111",
+      "111111111111",
       ".1111111111.",
-      ".1111111111.",
-      ".1111111111.",
-      "..11111111..",
-      "....1111....",
+      "...111111...",
       "............",
     ]},
   },
@@ -380,14 +407,14 @@ const PATTERNS = [
     ],
     cap: { layers: 3, mask: [ // chăn kim cương 3 lớp
       "............",
-      ".....11.....",
       "....1111....",
       "...111111...",
       "..11111111..",
+      ".1111111111.",
+      ".1111111111.",
       "..11111111..",
       "...111111...",
       "....1111....",
-      ".....11.....",
       "............",
     ]},
   },
@@ -404,8 +431,8 @@ function levelConfig(level) {
   // từ màn 2: siêu khó ngay (khó 1 -> khó 90) — đủ 12 loại ô, bố cục đa cụm
   // đã cao sẵn trong bản đồ, bộ 3 RẢI XA khắp các cụm; màn sau chỉ nhích nhẹ
   return {
-    types: TYPES.length,
-    tier:  Math.min(1 + Math.floor((level - 2) / 4), 3),
+    types: TYPES.length, // đủ 16 loại ô từ màn 2
+    tier:  Math.min(3 + Math.floor((level - 2) / 4), 5),
     spread: true,
   };
 }
@@ -508,35 +535,32 @@ function generateLevel(level) {
     }
   }
 
-  // "TẤM CHĂN" BỀ MẶT: phủ 2-3 lớp xếp so le lên trên — nhìn ngoài tưởng
-  // 1 khối lớn, khui dần lớp mặt mới lộ ra các đảo cụm nhỏ bên dưới
+  // "MÁI NGÓI" BỀ MẶT: hai mái lợp từ mép trên & mép dưới trượt vào giữa,
+  // mỗi hàng ngói đè NỬA hàng trước (z tăng dần) — chỉ hàng trong cùng bốc được.
+  // Bề mặt phải bóc tuần tự từng hàng, không còn kiểu "cả mặt trên tự do" dễ dãi.
   if (pattern.cap) {
-    let m = pattern.cap.mask;
-    const at1 = (mm, x, y) => x >= 0 && y >= 0 && y < mm.length && x < mm[0].length && mm[y][x] === "1";
-    for (let k = 0; k < pattern.cap.layers; k++) {
-      const z = maxH + k;
-      if (k % 2 === 1) {
-        // lớp lẻ: lệch nửa ô — thấy được lớp dưới (ưu tiên so le)
-        for (let y = 0; y < gridH - 1; y++) for (let x = 0; x < gridW - 1; x++)
-          if (at1(m, x, y) && at1(m, x + 1, y) && at1(m, x, y + 1) && at1(m, x + 1, y + 1))
-            positions.push({ x: x + 0.5, y: y + 0.5, z });
-      } else {
-        if (k > 0) { // mỗi cặp lớp co bớt 1 vòng để lộ mép lớp dưới
-          const next = m.map((row, y) => row.split("").map((c, x) =>
-            c === "1" && at1(m, x - 1, y) && at1(m, x + 1, y) && at1(m, x, y - 1) && at1(m, x, y + 1) ? "1" : "."
-          ).join(""));
-          if (next.some(r => r.includes("1"))) m = next;
-        }
-        for (let y = 0; y < gridH; y++) for (let x = 0; x < gridW; x++)
-          if (at1(m, x, y)) positions.push({ x, y, z });
-      }
+    const m = pattern.cap.mask;
+    const at1 = (x, y) => x >= 0 && y >= 0 && y < m.length && x < m[0].length && m[y][x] === "1";
+    const used = [];
+    m.forEach((r, y) => { if (r.includes("1")) used.push(y); });
+    let yTop = used[0], yBot = used[used.length - 1] - 1;
+    const placeRow = (yy, z) => {
+      const y0 = Math.floor(yy), frac = Math.abs(yy - y0) > 0.01;
+      for (let x = 0; x < gridW; x++)
+        if (at1(x, y0) && (!frac || at1(x, y0 + 1)))
+          positions.push({ x, y: yy, z });
+    };
+    for (let i = 0; yTop <= yBot + 0.01; i++) {
+      placeRow(yTop, maxH + i);
+      if (yBot - yTop >= 1) placeRow(yBot, maxH + i); // tránh 2 mái đụng nhau cùng tầng
+      yTop += 0.5; yBot -= 0.5;
     }
   }
 
   // từ màn 2: thêm 2 "XẤP BÀI" nằm ngang dưới bàn cờ (như Doggo) —
   // cả xấp chồng lệch ngang, chỉ thấy và bốc được lá ngoài cùng
   if (level >= 2) {
-    const len = 8 + cfg.tier;
+    const len = 10 + cfg.tier;
     for (let k = 0; k < len; k++) {
       positions.push({ x: 0.3 + k * 0.4, y: gridH + 0.3, z: k, flat: true });
       positions.push({ x: gridW - 1.3 - k * 0.4, y: gridH + 0.3, z: k, flat: true });
@@ -625,7 +649,7 @@ function computeSizes() {
   const w = boardWrap.clientWidth - 16;
   const h = boardWrap.clientHeight - 16;
   const unitsW = gridW + 0.2;
-  const unitsH = gridH + 0.9; // chừa chỗ cho độ nâng tầng (tối đa 7 tầng)
+  const unitsH = gridH + 1.6; // chừa chỗ cho độ nâng tầng (mái ngói chồng sâu ~14 tầng)
   tileW = Math.floor(Math.min(w / unitsW, h / (unitsH * TILE_RATIO)));
   tileW = Math.max(30, Math.min(tileW, 78));
   tileH = Math.round(tileW * TILE_RATIO);
@@ -651,7 +675,7 @@ function positionTileEl(t) {
   t.el.style.height = tileH + "px";
   t.el.style.left = (t.x * tileW + tileW * 0.1) + "px";
   // xấp bài ngang nằm phẳng, không nâng theo tầng
-  t.el.style.top = (t.y * tileH - (t.flat ? 0 : t.z * liftPx) + tileH * 0.8) + "px";
+  t.el.style.top = (t.y * tileH - (t.flat ? 0 : t.z * liftPx) + tileH * 1.5) + "px";
   t.el.style.zIndex = t.z * 1000 + Math.round(t.y * 2) * 20 + Math.round(t.x * 2);
 }
 
